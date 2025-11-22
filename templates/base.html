@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}Student Attendance{% endblock %}</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="logo-circle">SA</div>
+        <div>
+          <div class="app-title">Student Attendance</div>
+          <div class="app-subtitle">Simple panel to manage student records</div>
+        </div>
+      </div>
+
+      <nav class="topnav">
+        <a href="{{ url_for('index') }}" class="nav-link">Add Student</a>
+        <a href="{{ url_for('students') }}" class="nav-link">View Students</a>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+      <span>Made for learning · Flask + SQLite · Deployed on Render</span>
+    </footer>
+  </div>
+</body>
+</html>

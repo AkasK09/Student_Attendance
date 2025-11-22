@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Students · Student Attendance{% endblock %}
+
+{% block content %}
+<section class="grid">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2 class="card-title">Saved Students</h2>
+        <p class="card-description">
+          {{ total }} record{% if total != 1 %}s{% endif %} in the system.
+        </p>
+      </div>
+      <a href="{{ url_for('index') }}" class="btn btn-primary">+ Add new</a>
+    </div>
+
+    {% if students %}
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Dept</th>
+              <th>Roll No</th>
+              <th>College</th>
+              <th class="col-actions">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for s in students %}
+            <tr>
+              <td>{{ s.id }}</td>
+              <td>{{ s.name }}</td>
+              <td>{{ s.dept }}</td>
+              <td>{{ s.rollno }}</td>
+              <td>{{ s.college }}</td>
+              <td class="col-actions">
+                <a href="{{ url_for('delete', id=s.id) }}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Delete this record?');">
+                  Delete
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="empty-state">No students yet. Add one from the “Add Student” page.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
